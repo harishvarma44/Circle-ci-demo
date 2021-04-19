@@ -8,6 +8,9 @@ jobs:
     working_directory: ~/react-app
     docker:
       - image: circleci/node:4.2.1
+        auth:
+          username: $DOCKERHUB_USERNAME
+          password: $DOCKERHUB_PASSWORD
     steps:
       - checkout
       - run:
