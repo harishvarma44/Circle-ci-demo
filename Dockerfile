@@ -6,11 +6,13 @@ WORKDIR /app
 
 COPY package*.json /app/
 
-RUN npm install
+RUN sudo npm install -g npm@latest
+
+RUN sudo npm install
 
 COPY ./ /app/
 
-RUN npm run build
+RUN sudo npm run build
 
 FROM nginx:1.17-alpine
 
