@@ -68,4 +68,3 @@ workflows:
       - build_docker_image:
           requires:
 	    - run_tests
-
