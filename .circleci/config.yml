@@ -30,7 +30,7 @@ jobs:
 #         command: npm test
   build_docker_image:
     docker:
-      - image: cimg/node
+      - image: cimg/node:12.16
         auth:
           username: $DOCKERHUB_USERNAME
           password: $DOCKERHUB_PASSWORD
