@@ -7,7 +7,7 @@ jobs:
   run_tests:
     working_directory: ~/react-app
     docker:
-      - image: circleci/node:4.2.1
+      - image: circleci/node:latest
         auth:
           username: $DOCKERHUB_USERNAME
           password: $DOCKERHUB_PASSWORD
