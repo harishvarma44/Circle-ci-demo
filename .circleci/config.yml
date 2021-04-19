@@ -30,13 +30,13 @@ jobs:
 #         command: npm test
   build_docker_image:
     docker:
-      - image: cimg/node:12.16
+      - image: circleci/docker-gc:2.0 
         auth:
           username: $DOCKERHUB_USERNAME
           password: $DOCKERHUB_PASSWORD
     steps:
       - checkout
-      - run: node --version
+      - run: docker --version
 #      - setup_remote_docker:
 #          docker_layer_caching: true
 #      - run:
