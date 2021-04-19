@@ -29,12 +29,12 @@ jobs:
 #         name: test
 #         command: npm test
   build_docker_image:
-    docker:
-      - image: circleci/docker@1.5.0 
-        auth:
-          username: $CCI_USERNAME
-          password: $CCI_PASSWORD
-    steps:
+   executor: docker/docker
+#    auth:
+#          username: $CCI_USERNAME
+#          password: $CCI_PASSWORD
+   steps:
+      - setup_remote_docker
       - checkout
       - run: docker --version
 #      - setup_remote_docker:
