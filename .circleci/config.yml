@@ -56,15 +56,15 @@ workflows:
 #	        - 14.0.0
 #		- 13.11.0
 #		- 12.16.0
-      - docker/publish:
-          image: harishvarma44/react-nginx-demo
-          dockerfile: Dockerfile
-          requires:
-           - build_docker_image
-          filters:
-            branches:
-              only: 
-                - master
+#      - docker/publish:
+#          image: harishvarma44/react-nginx-demo
+#          dockerfile: Dockerfile
+#          requires:
+#           - build_docker_image
+#          filters:
+#            branches:
+#              only: 
+#                - master
       - build_docker_image:
           requires:
 	   - run_tests
