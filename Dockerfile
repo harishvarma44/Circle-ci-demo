@@ -1,5 +1,5 @@
-FROM node:13.10.1-alpine as build
-
+#FROM node:13.10.1-alpine as build
+FROM circleci/node:latest as build
 LABEL author="Hareesh V"
 
 WORKDIR /app
