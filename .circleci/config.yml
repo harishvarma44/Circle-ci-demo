@@ -36,7 +36,7 @@ jobs:
           password: $DOCKERHUB_PASSWORD
     steps:
       - checkout
-      - run: docker --version
+#      - run: docker --version
 #      - setup_remote_docker:
 #          docker_layer_caching: true
 #      - run:
