@@ -1,5 +1,7 @@
 FROM node:13.10.1-alpine as build
 
+LABEL author="Hareesh V"
+
 WORKDIR /app
 
 COPY package*.json /app/
