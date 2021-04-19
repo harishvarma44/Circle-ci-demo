@@ -25,12 +25,12 @@ jobs:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
             - ./node_modules
-      - run:
-          name: test
-          command: npm test
+#      - run:
+#         name: test
+#         command: npm test
   build_docker_image:
     docker:
-      - image: cimg/node:14.0.0
+      - image: cimg/node:latest
     steps:
       - checkout
       - setup_remote_docker:
