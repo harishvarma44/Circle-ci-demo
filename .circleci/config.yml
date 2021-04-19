@@ -38,11 +38,11 @@ jobs:
       - run:
           name: Build docker image
 	  command: docker build -t ci-image:latest .
-  # run_integration_tests:
-  #   docker:
-  #     - image: circleci/node:13.10.1
-  #   steps:
-  #     - checkout
+# run_integration_tests:
+#   docker:
+#     - image: circleci/node:13.10.1
+#   steps:
+#     - checkout
   
 workflows:
   version: 2
@@ -60,11 +60,11 @@ workflows:
           image: harishvarma44/react-nginx-demo
           dockerfile: Dockerfile
           requires:
-            - build_docker_image
+           - build_docker_image
           filters:
             branches:
               only: 
                 - master
       - build_docker_image:
           requires:
-	    - run_tests
+	   - run_tests
