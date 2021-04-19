@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  docker: circleci/node@4.2.1
+  docker: circleci/docker@1.5.0
 
 jobs:
   run_tests:
@@ -30,13 +30,13 @@ jobs:
 #         command: npm test
   build_docker_image:
     docker:
-      - image: circleci/docker-coreos-toolbox-ubuntu:0.1
+      - image: circleci/docker@1.5.0 
         auth:
-          username: $DOCKERHUB_USERNAME
-          password: $DOCKERHUB_PASSWORD
+          username: $CCI_USERNAME
+          password: $CCI_PASSWORD
     steps:
       - checkout
-#      - run: docker --version
+      - run: docker --version
 #      - setup_remote_docker:
 #          docker_layer_caching: true
 #      - run:
