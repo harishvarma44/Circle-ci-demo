@@ -30,7 +30,7 @@ jobs:
 #         command: npm test
   build_docker_image:
     docker:
-      - image: circleci/docker-gc:2.0 
+      - image: circleci/docker-coreos-toolbox-ubuntu:0.1
         auth:
           username: $DOCKERHUB_USERNAME
           password: $DOCKERHUB_PASSWORD
