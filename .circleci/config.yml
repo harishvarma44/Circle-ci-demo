@@ -51,8 +51,9 @@ jobs:
 #   steps:
 #     - checkout
   docker/publish:
-    docker:
-      - image: circleci/golang:1.15
+#    docker:
+#      - image: circleci/golang:1.15
+     machine: true
         auth:
           username: harishvarma44
           password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
