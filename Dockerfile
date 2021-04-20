@@ -6,9 +6,9 @@ WORKDIR /app
 
 COPY package*.json /app/
 
-RUN sudo npm install -g npm@latest
+RUN  npm install -g npm@latest
 
-RUN sudo npm install
+RUN  npm install
 
 COPY ./ /app/
 
