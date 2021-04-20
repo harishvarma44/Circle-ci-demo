@@ -70,9 +70,9 @@ jobs:
           echo $DOCKER_PASSWORD | docker login -u $DOCKER_LOGIN --password-stdin
 #          docker push $DOCKER_LOGIN/ci-demo-docker:$TAG
       # build the application image
-      - run: docker build -f ./Dockerfile -t $CIRCLE_USERNAME/cidemodocker::$TAG .
+      - run: docker build -t $CIRCLE_USERNAME/ci-demo-docker:$TAG .
       # deploy the image
-      - run: docker push $CIRCLE_USERNAME/cidemodocker::$TAG
+      - run: docker push $CIRCLE_USERNAME/ci-demo-docker:$TAG
   
 workflows:
   version: 2
@@ -87,17 +87,17 @@ workflows:
 #		- 13.11.0
 #		- 12.16.0
        - docker/publish:
-          image: $DOCKER_LOGIN/cidemodocker:$TAG
+          image: $DOCKER_LOGIN/ci-demo-docker:$TAG
 #          dockerfile: Dockerfile
           context:
             - DOCKERHUB
 #          use-docker-credentials-store: true
-#          requires:
-#           - build_docker_image
-#          filters:
-#            branches:
-#              only: 
-#               - master
+          requires:
+           - build_docker_image
+          filters:
+            branches:
+              only: 
+               - master
        - build_docker_image:
           requires:
             - run_tests
