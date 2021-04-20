@@ -12,7 +12,7 @@ RUN sudo npm install
 
 COPY ./ /app/
 
-RUN sudo npm run build
+RUN  npm run build
 
 FROM nginx:1.17-alpine
 
