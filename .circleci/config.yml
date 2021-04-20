@@ -68,7 +68,7 @@ jobs:
       # build and push Docker image
       - run:  |
           echo $DOCKER_PASSWORD | docker login -u $DOCKER_LOGIN --password-stdin
-      # deploy the image
+      # Push the image to registry docker.io
       - run: docker push $CIRCLE_USERNAME/ci-demo-docker:$CIRCLE_BUILD_NUM
   
 workflows:
@@ -84,7 +84,7 @@ workflows:
 #		- 13.11.0
 #		- 12.16.0
        - docker/publish:
-          image: $DOCKER_LOGIN/ci-demo-docker:$TAG
+          image: $DOCKER_USERNAME/ci-demo-docker:$CIRCLE_BUILD_NUM
 #          dockerfile: Dockerfile
           context:
             - DOCKERHUB
