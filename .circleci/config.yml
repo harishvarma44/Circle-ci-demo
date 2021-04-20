@@ -60,16 +60,14 @@ jobs:
       - checkout
       # ... steps for building/testing app ...
 
-#     - setup_remote_docker:
-#          version: 19.03.13
+      - setup_remote_docker:
+          version: 19.03.13
 #          docker_layer_caching: true
       # build the application image
       - run: docker build -t $CIRCLE_USERNAME/ci-demo-docker:$CIRCLE_BUILD_NUM .
       # build and push Docker image
       - run:  |
-#          TAG=0.1.$CIRCLE_BUILD_NUM
           echo $DOCKER_PASSWORD | docker login -u $DOCKER_LOGIN --password-stdin
-#          docker push $DOCKER_LOGIN/ci-demo-docker:$TAG
       # deploy the image
       - run: docker push $CIRCLE_USERNAME/ci-demo-docker:$CIRCLE_BUILD_NUM
   
@@ -86,11 +84,11 @@ workflows:
 #		- 13.11.0
 #		- 12.16.0
        - docker/publish:
-#          image: $DOCKER_LOGIN/ci-demo-docker:$TAG
+          image: $DOCKER_LOGIN/ci-demo-docker:$TAG
 #          dockerfile: Dockerfile
           context:
             - DOCKERHUB
-#          use-docker-credentials-store: true
+          use-docker-credentials-store: true
           requires:
            - build_docker_image
           filters:
