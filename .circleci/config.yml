@@ -64,12 +64,12 @@ jobs:
           version: 19.03.13
 #          docker_layer_caching: true
       # build the application image
-      - run: docker build -t harishvarma44/ci-demo-docker:$CIRCLE_BUILD_NUM .
+      - run: docker build -t DOCKERHUB_USERNAME/ci-demo-docker .
       # build and push Docker image
       - run:  |
           echo $DOCKER_PASSWORD | docker login -u $DOCKER_LOGIN --password-stdin
       # Push the image to registry docker.io
-      - run: docker push $DOCKERHUB_USERNAME/ci-demo-docker:$CIRCLE_BUILD_NUM
+      - run: docker push $DOCKERHUB_USERNAME/ci-demo-docker
   
 workflows:
   version: 2
@@ -84,7 +84,7 @@ workflows:
 #		- 13.11.0
 #		- 12.16.0
        - docker/publish:
-          image: $DOCKERHUB_USERNAME/ci-demo-docker:$CIRCLE_BUILD_NUM
+          image: $DOCKERHUB_USERNAME/ci-demo-docker
 #          dockerfile: Dockerfile
           context:
             - DOCKERHUB
