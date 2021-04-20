@@ -50,7 +50,25 @@ jobs:
 #     - image: circleci/node:13.10.1
 #   steps:
 #     - checkout
-  
+  docker/publish:
+#    working_directory: ~/react-app
+   docker:
+     executor: docker/docker   
+     steps:
+      - setup_remote_docker
+      - checkout
+      - docker/check
+      - docker/build:
+          image: $CIRCLE_USERNAME/ci-image-$CIRCLE_BUILD_NUM
+      - docker/push:
+          digest-path: /tmp/digest.txt
+          image: $CIRCLE_USERNAME/ci-image-$CIRCLE_BUILD_NUM
+      - run:
+          command: |
+                    echo "$<<parameters.docker-password>>" \
+                      | docker login -u "$<<parameters.docker-username>>" \
+                          --password-stdin <<parameters.registry>>
+                name: Docker login
 workflows:
   version: 2
   build_test:
