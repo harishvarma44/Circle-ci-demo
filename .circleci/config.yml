@@ -51,9 +51,8 @@ jobs:
 #   steps:
 #     - checkout
   docker/publish:
-#    docker:
-#      - image: circleci/golang:1.15
-     machine: true
+    docker:
+      - image: circleci/golang:1.15
         auth:
           username: harishvarma44
           password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
@@ -70,7 +69,7 @@ jobs:
       - run:  |
           echo $DOCKER_PASSWORD | docker login -u $DOCKER_LOGIN --password-stdin
       # Push the image to registry docker.io
-      - run: docker push $DOCKERHUB_USERNAME/ci-demo-docker
+      - run: docker push $DOCKERHUB_USERNAME/ci-demo-docker:$CIRCLE_BUILD_NUM
   
 workflows:
   version: 2
@@ -85,7 +84,7 @@ workflows:
 #		- 13.11.0
 #		- 12.16.0
        - docker/publish:
-          image: $DOCKERHUB_USERNAME/ci-demo-docker
+          image: $DOCKERHUB_USERNAME/ci-demo-docker:$CIRCLE_BUILD_NUM
 #          dockerfile: Dockerfile
           context:
             - DOCKERHUB
