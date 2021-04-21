@@ -87,7 +87,8 @@ workflows:
 #		- 13.11.0
 #		- 12.16.0
        - docker/publish:
-          image: $DOCKERHUB_USERNAME/ci-demo-docker:$CIRCLE_BUILD_NUM
+          image: $DOCKERHUB_USERNAME/ci-demo-docker
+          tag: $CIRCLE_BUILD_NUM
 #          dockerfile: Dockerfile
           context:
             - DOCKERHUB
