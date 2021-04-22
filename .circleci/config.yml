@@ -91,7 +91,7 @@ jobs:
 #	   command: echo "export TAG-0.1.$CIRCLE_SHA1" >> $BASH_ENV
       - run:
           name: Pull docker image from dockerhub
-          command: docker pull harishvarma44/ci-demo-docker:103
+          command: docker pull harishvarma44/ci-demo-docker:103 && docker run -p 3002:80 -t harishvarma44/ci-demo-docker:$CIRCLE_BUILD_NUM
       - run:
           name: deploy built docker image
           command: docker run -p 3002:80 -t harishvarma44/ci-demo-docker:$CIRCLE_BUILD_NUM
