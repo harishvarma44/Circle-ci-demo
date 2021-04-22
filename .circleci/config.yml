@@ -96,7 +96,6 @@ jobs:
                    docker run -p 3002:80 -d harishvarma44/ci-demo-docker:$CIRCLE_PREVIOUS_BUILD_NUM
                    docker ps -a
                    curl --version
-#                   curl -v http://localhost:3002/
                    curl -I http://localhost:3002/
                    
       - run:
