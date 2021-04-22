@@ -74,7 +74,25 @@ jobs:
       - run: docker push $DOCKERHUB_USERNAME/ci-demo-docker:$CIRCLE_BUILD_NUM
       # Run docker image
       - run: docker run -p 3002:80 -it $DOCKERHUB_USERNAME/ci-demo-docker:$CIRCLE_BUILD_NUM
-      
+  
+  run_docker_image:
+   executor: docker/docker
+#    auth:
+#          username: $CCI_USERNAME
+#          password: $CCI_PASSWORD
+   steps:
+      - setup_remote_docker
+      - checkout
+#      - run: docker --version
+#      - setup_remote_docker:
+#          docker_layer_caching: true
+#      - run:
+#          name: Setup Tag
+#	   command: echo "export TAG-0.1.$CIRCLE_SHA1" >> $BASH_ENV
+      - run:
+          name: Run docker image
+          command: docker pull harishvarma44/ci-demo-docker:103
+          command: docker run -p 3002:80 -t harishvarma44/ci-demo-docker:$CIRCLE_BUILD_NUM
 workflows:
   version: 2
   build_test:
@@ -103,3 +121,6 @@ workflows:
        - build_docker_image:
           requires:
             - run_tests
+       - run_docker_image:
+          requires:
+            - docker/publish
