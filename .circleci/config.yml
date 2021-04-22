@@ -93,10 +93,12 @@ jobs:
           name: Pull docker image from dockerhub
           command: |
                    docker pull harishvarma44/ci-demo-docker:$CIRCLE_PREVIOUS_BUILD_NUM 
-                   docker run -p 3002:80 -t harishvarma44/ci-demo-docker:$CIRCLE_PREVIOUS_BUILD_NUM
+                   docker run -p 3002:80 -d harishvarma44/ci-demo-docker:$CIRCLE_PREVIOUS_BUILD_NUM
+                   curl -I http://localhost:3002
       - run:
           name: deploy built docker image
-          command: docker run -p 3002:80 -t harishvarma44/ci-demo-docker:$CIRCLE_BUILD_NUM
+          command: docker run -p 3002:80 -d harishvarma44/ci-demo-docker:$CIRCLE_BUILD_NUM
+         
 workflows:
   version: 2
   build_test:
