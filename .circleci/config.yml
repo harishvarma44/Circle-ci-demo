@@ -93,7 +93,7 @@ jobs:
           name: Pull docker image from dockerhub
           command: |
                    docker pull harishvarma44/ci-demo-docker:$CIRCLE_PREVIOUS_BUILD_NUM 
-                   docker run -p 80:80 -it harishvarma44/ci-demo-docker:$CIRCLE_PREVIOUS_BUILD_NUM bash
+                   docker run -p 80:80 -it harishvarma44/ci-demo-docker:$CIRCLE_PREVIOUS_BUILD_NUM sh
                    curl -v http://localhost:80/
                    curl -I http://localhost:80/
                    exit
