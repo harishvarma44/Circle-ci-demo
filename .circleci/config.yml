@@ -76,11 +76,16 @@ jobs:
       - run: docker run -p 3002:80 -it $DOCKERHUB_USERNAME/ci-demo-docker:$CIRCLE_BUILD_NUM
   
   deploy_docker_appn:
-   executor: docker/docker
+    docker:
+      - image: circleci/golang:1.15
+        auth:
+          username: harishvarma44
+          password: $DOCKERHUB_PASSWORD
+   
 #      auth:
 #          username: $CCI_USERNAME
 #          password: $CCI_PASSWORD
-   steps:
+    steps:
       - setup_remote_docker
       - checkout
 #      - run: docker --version
@@ -96,7 +101,7 @@ jobs:
                    docker run -p 3002:80 -d harishvarma44/ci-demo-docker:$CIRCLE_PREVIOUS_BUILD_NUM
                    docker ps -a
                    curl --version
-                   curl -v http://localhost:3002/
+                   curl -I http://localhost:3002/
                    
       - run:
           name: deploy built docker image
