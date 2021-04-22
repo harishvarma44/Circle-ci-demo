@@ -76,10 +76,11 @@ jobs:
       - run: docker run -p 3002:80 -it $DOCKERHUB_USERNAME/ci-demo-docker:$CIRCLE_BUILD_NUM
   
   deploy_docker_appn:
-   executor: docker/docker
-#    auth:
-#          username: $CCI_USERNAME
-#          password: $CCI_PASSWORD
+    image: circleci/node
+#   executor: docker/docker
+    auth:
+          username: $CCI_USERNAME
+          password: $CCI_PASSWORD
    steps:
       - setup_remote_docker
       - checkout
