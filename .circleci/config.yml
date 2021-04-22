@@ -72,8 +72,9 @@ jobs:
       - run: docker image tag $DOCKERHUB_USERNAME/ci-demo-docker $DOCKERHUB_USERNAME/ci-demo-docker:$CIRCLE_BUILD_NUM
       # Push the image to registry docker.io
       - run: docker push $DOCKERHUB_USERNAME/ci-demo-docker:$CIRCLE_BUILD_NUM
+      # Run docker image
+      - run: docker run -p 3002:80 -it $DOCKERHUB_USERNAME/ci-demo-docker:$CIRCLE_BUILD_NUM
       
-  
 workflows:
   version: 2
   build_test:
