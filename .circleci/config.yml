@@ -99,7 +99,7 @@ jobs:
           command: |
                    docker pull harishvarma44/ci-demo-docker:$CIRCLE_PREVIOUS_BUILD_NUM 
                    docker run -p 3002:80 -d harishvarma44/ci-demo-docker:$CIRCLE_PREVIOUS_BUILD_NUM
-                   docker ps -a
+#                   docker ps -a
                    curl --version
                    curl -I http://localhost:3002/
                    
