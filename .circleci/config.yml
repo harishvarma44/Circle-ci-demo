@@ -77,7 +77,7 @@ jobs:
   
   deploy_docker_appn:
     docker:
-      - image: circleci/golang:1.15
+      - image: circleci/node:latest
         auth:
           username: harishvarma44
           password: $DOCKERHUB_PASSWORD
@@ -99,13 +99,11 @@ jobs:
           command: |
                    docker pull harishvarma44/ci-demo-docker:$CIRCLE_PREVIOUS_BUILD_NUM 
                    docker run -p 3002:80 -d harishvarma44/ci-demo-docker:$CIRCLE_PREVIOUS_BUILD_NUM > /tmp/dimg.txt
-                   netstat -tlpen | grep 3002
-                   curl http://localhost:3002
-#                   docker exec -it $(</tmp/dimg.txt)" sh  
-#                   exit
-#                   docker ps -a
-#                   curl --version
-#                   curl -I http://localhost:3002/
+                   curl -I http://localhost:3002
+                   docker exec -it $(</tmp/dimg.txt)"  
+                   exit
+                   docker ps -a
+                   curl --version
                    
       - run:
           name: deploy built docker image
