@@ -99,7 +99,7 @@ jobs:
           command: |
                    docker pull harishvarma44/ci-demo-docker:$CIRCLE_PREVIOUS_BUILD_NUM 
                    docker run -p 3002:80 -d harishvarma44/ci-demo-docker:$CIRCLE_PREVIOUS_BUILD_NUM > /tmp/dimg.txt
-                   docker exec $(</tmp/dimg.txt)" curl -v http://localhost:80  
+                   docker exec $(</tmp/dimg.txt) curl -v http://localhost:80  
                    docker ps -a
                    curl --version
                    
