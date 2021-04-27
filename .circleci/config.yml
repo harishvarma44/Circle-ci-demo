@@ -103,9 +103,9 @@ jobs:
                    docker ps -a
                    curl --version
                    
-      - run:
-          name: deploy built docker image
-          command: docker run -p 3002:80 -d harishvarma44/ci-demo-docker:$CIRCLE_BUILD_NUM
+#      - run:
+#          name: deploy built docker image
+#          command: docker run -p 3002:80 -d harishvarma44/ci-demo-docker:$CIRCLE_BUILD_NUM
          
 workflows:
   version: 2
